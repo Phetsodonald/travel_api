@@ -33,6 +33,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'accounts',
+    'bookings',
+    'budgets',
+    'destinations',
+    'itineraries',
+    'reviews'
 ]
 
 MIDDLEWARE = [
@@ -61,6 +69,10 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
+}
 
 WSGI_APPLICATION = 'TRAVELAPI.wsgi.application'
 
