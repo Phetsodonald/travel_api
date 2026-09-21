@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,8 +74,10 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':['rest_framework_simplejwt.authentication.JWTAuthentication'],
     'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.IsAuthenticated'],
-    'DEFAULT_PAGINATION_CLASS':'travel_api.pagination.StandardPagination','PAGE_SIZE':20,
-
+    'DEFAULT_PAGINATION_CLASS':'TRAVELAPI.pagination.StandardPagination','PAGE_SIZE':20,
+    'EXCEPTION_HANDLER':'TRAVELAPI.exceptions.custom_exception_handler',
+    'DEFAULT_FILTER_BACKENDS':['django_filters.rest_framework.DjangoFilterBackend','rest_framework.filters.SearchFilter','rest_framework.filters.OrderingFilter'],
+    'DEFAULT_SCHEMA_CLASS':'drf_spectacular.openapi.AutoSchema',
 }
 
 WSGI_APPLICATION = 'TRAVELAPI.wsgi.application'
@@ -138,3 +141,8 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+SIMPLE_JWT={'ACCESS_TOKEN_LIFETIME':timedelta(hours=1),'REFRESH_TOKEN_LIFETIME':timedelta(days=7),'AUTH_HEADER_TYPES':('Bearer',)}
+SPECTACULAR_SETTINGS={'TITLE':'Travel Planner API','DESCRIPTION':'Travel itinerary planning and booking REST API','VERSION':'1.0.0','SERVE_INCLUDE_SCHEMA':False}
+FILE_UPLOAD_MAX_MEMORY_SIZE=5*1024*1024
+DATA_UPLOAD_MAX_MEMORY_SIZE=10*1024*1024
