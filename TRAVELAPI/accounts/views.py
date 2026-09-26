@@ -24,10 +24,12 @@ def login(request):
     if not s.is_valid(): return Response(s.errors,status=401)
     user=s.validated_data['user']; refresh=RefreshToken.for_user(user)
     return Response({'user':UserSerializer(user).data,'tokens':{'refresh':str(refresh),'access':str(refresh.access_token)}})
+
 class UserProfileView(generics.RetrieveUpdateAPIView):
     """Retrieve or update the authenticated user's profile."""
     serializer_class=UserSerializer; permission_classes=[IsAuthenticated]
     def get_object(self): return self.request.user
+
 class PasswordChangeView(generics.UpdateAPIView):
     """Change the authenticated user's password."""
     serializer_class=PasswordChangeSerializer; permission_classes=[IsAuthenticated]
