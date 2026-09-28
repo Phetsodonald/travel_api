@@ -14,10 +14,10 @@ class BudgetTests(APITestCase):
         self.assertEqual(self.budget.total_budget,500)
     
     def test_expense_create(self):
-        self.assertEqual(self.client.post('/api/v1/budgets/expenses/',{'itinerary':self.trip.id,'category':'food','description':'Lunch','amount':'100','date':str(date.today())}).status_code,201)
+        self.assertEqual(self.client.post('/api/budgets/expenses/',{'itinerary':self.trip.id,'category':'food','description':'Lunch','amount':'100','date':str(date.today())}).status_code,201)
     
     def test_summary(self): 
-        self.assertEqual(self.client.get(f'/api/v1/budgets/budgets/{self.budget.id}/summary/').status_code,200)
+        self.assertEqual(self.client.get(f'/api/budgets/budgets/{self.budget.id}/summary/').status_code,200)
     
     def test_by_category(self): 
-        self.assertEqual(self.client.get('/api/v1/budgets/expenses/by_category/').status_code,200)
+        self.assertEqual(self.client.get('/api/budgets/expenses/by_category/').status_code,200)

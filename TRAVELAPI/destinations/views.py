@@ -26,7 +26,8 @@ class DestinationViewSet(viewsets.ReadOnlyModelViewSet):
     queryset=Destination.objects.filter(is_active=True).prefetch_related('photos'); permission_classes=[IsDestinationAdminOrReadOnly]
     filterset_class=DestinationFilter; search_fields=['name','description','country']; ordering_fields=['name','avg_daily_cost','created_at']; pagination_class=SmallResultsPagination
     
-    def get_serializer_class(self): return DestinationDetailSerializer if self.action=='retrieve' else DestinationListSerializer
+    def get_serializer_class(self): 
+        return DestinationDetailSerializer if self.action=='retrieve' else DestinationListSerializer
     
     @action(detail=True,methods=['get'])
     def popular_activities(self,request,pk=None):

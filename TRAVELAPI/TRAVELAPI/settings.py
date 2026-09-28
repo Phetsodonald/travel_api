@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'django-filters',
+    'django_filters',
     'drf_spectacular',
     'accounts',
     'bookings',

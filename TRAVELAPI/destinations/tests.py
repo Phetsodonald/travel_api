@@ -9,17 +9,17 @@ class DestinationTests(APITestCase):
     
     def test_list(self): 
         self.assertEqual(self.client.get(
-            '/api/v1/destinations/'
+            '/api/destinations/'
         ).status_code,200)
     
     def test_search(self): 
         self.assertEqual(self.client.get(
-            '/api/v1/destinations/search/?q=Cape'
+            '/api/destinations/search/?q=Cape'
         ).status_code,200)
     
     def test_detail(self): 
         self.assertEqual(self.client.get(
-            f'/api/v1/destinations/{self.d.id}/'
+            f'/api/destinations/{self.d.id}/'
         ).status_code,200)
     
     def test_average_rating_without_reviews(self): 
