@@ -9,11 +9,23 @@ from .filters import AccommodationFilter,ActivityFilter,BookingFilter
 from .permissions import IsBookingOwner
 
 class AccommodationViewSet(viewsets.ModelViewSet):
-    queryset=Accommodation.objects.select_related('destination').all(); serializer_class=AccommodationSerializer; permission_classes=[IsAuthenticatedOrReadOnly]; filterset_class=AccommodationFilter; search_fields=['name','description','address']; ordering_fields=['name','price_per_night']
+    queryset=Accommodation.objects.select_related('destination').all(); 
+    serializer_class=AccommodationSerializer; 
+    permission_classes=[IsAuthenticatedOrReadOnly]; 
+    filterset_class=AccommodationFilter; 
+    search_fields=['name','description','address']; 
+    ordering_fields=['name','price_per_night']
 
 class ActivityViewSet(viewsets.ModelViewSet):
-    queryset=Activity.objects.select_related('destination').all(); serializer_class=ActivitySerializer; permission_classes=[IsAuthenticatedOrReadOnly]; filterset_class=ActivityFilter; search_fields=['name','description','requirements']; ordering_fields=['name','price','created_at']
-    def get_queryset(self): return super().get_queryset().prefetch_related('daily_plans')
+    queryset=Activity.objects.select_related('destination').all(); 
+    serializer_class=ActivitySerializer; 
+    permission_classes=[IsAuthenticatedOrReadOnly]; 
+    filterset_class=ActivityFilter; 
+    search_fields=['name','description','requirements']; 
+    ordering_fields=['name','price','created_at']
+    
+    def get_queryset(self): 
+        return super().get_queryset().prefetch_related('daily_plans')
 
 class BookingViewSet(viewsets.ModelViewSet):
     filterset_class=BookingFilter; 
