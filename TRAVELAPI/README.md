@@ -20,7 +20,7 @@ python manage.py runserver
 SQLite is the default development fallback.
 
 ## Environment
-`SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`, database engine/name/user/password/host/port. Never commit `.env`.
+`SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`,
 
 ## Documentation
 - Swagger: `http://127.0.0.1:8000/api/docs/`
@@ -29,30 +29,30 @@ SQLite is the default development fallback.
 - Admin: `http://127.0.0.1:8000/admin/`
 
 ## Main API endpoints
-`POST /api/v1/accounts/register/` — register and receive JWTs.
-`POST /api/v1/accounts/login/` — login and receive JWTs.
-`POST /api/v1/auth/token/refresh/` — refresh access token.
-`GET/PATCH /api/v1/accounts/profile/` — profile.
-`GET /api/v1/destinations/` — browse destinations.
-`GET /api/v1/destinations/search/?q=cape` — custom search.
-`GET/POST /api/v1/itineraries/` — list/create trips.
-`GET/PATCH/DELETE /api/v1/itineraries/<id>/` — trip management.
-`GET /api/v1/itineraries/<id>/report/` — trip report.
-`POST /api/v1/itineraries/<id>/share/` — share a trip.
-`GET/POST /api/v1/itineraries/<id>/days/` — day plans.
-`GET/POST/PATCH/DELETE /api/v1/bookings/` — booking CRUD via router.
-`POST /api/v1/bookings/<id>/confirm/` and `/cancel/` — booking actions.
-`GET/POST/PATCH/DELETE /api/v1/budgets/` — budgets/expenses.
-`GET/POST/PATCH/DELETE /api/v1/reviews/` — reviews.
-`GET /api/v1/analytics/` — personal analytics.
+`POST /api/accounts/register/` — register and receive JWTs.
+`POST /api/accounts/login/` — login and receive JWTs.
+`POST /api/auth/token/refresh/` — refresh access token.
+`GET/PATCH /api/accounts/profile/` — profile.
+`GET /api/destinations/` — browse destinations.
+`GET /api/destinations/search/?q=cape` — custom search.
+`GET/POST /api/itineraries/` — list/create trips.
+`GET/PATCH/DELETE /api/itineraries/<id>/` — trip management.
+`GET /api/itineraries/<id>/report/` — trip report.
+`POST /api/itineraries/<id>/share/` — share a trip.
+`GET/POST /api/itineraries/<id>/days/` — day plans.
+`GET/POST/PATCH/DELETE /api/bookings/` — booking CRUD via router.
+`POST /api/bookings/<id>/confirm/` and `/cancel/` — booking actions.
+`GET/POST/PATCH/DELETE /api/budgets/` — budgets/expenses.
+`GET/POST/PATCH/DELETE /api/reviews/` — reviews.
+`GET /api/analytics/` — personal analytics.
 
 ## Example
 ```bash
-curl -X POST http://127.0.0.1:8000/api/v1/accounts/login/ \
+curl -X POST http://127.0.0.1:8000/api/accounts/login/ \
   -H "Content-Type: application/json" \
   -d '{"username":"tester","password":"pass12345"}'
 
-curl http://127.0.0.1:8000/api/v1/destinations/ \
+curl http://127.0.0.1:8000/api/destinations/ \
   -H "Authorization: Bearer ACCESS_TOKEN"
 ```
 
@@ -63,7 +63,7 @@ See `PLANNING.md` for the ERD, permission matrix, URL design and testing strateg
 
 ## Tests
 ```bash
-pytest
-pytest --cov=. --cov-report=term-missing
+coverage run manage.py test
+coverage report --omit="*/tests.py" -m
 ```
 The suite contains more than 25 API/model/permission/authentication checks.

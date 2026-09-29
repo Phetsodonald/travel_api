@@ -27,7 +27,7 @@ erDiagram
 ```
 
 ## Endpoint groups
-- Auth: `POST /api/v1/accounts/register/`, `POST /login/`, `GET/PATCH /profile/`, `PATCH /password/change/`, JWT refresh.
+- Auth: `POST /api/accounts/register/`, `POST /login/`, `GET/PATCH /profile/`, `PATCH /password/change/`, JWT refresh.
 - Destinations: catalogue ViewSet, search, preference save.
 - Trips: itinerary CRUD, search, report, duplicate, upcoming, collaborators, daily plans.
 - Bookings: accommodation/activity CRUD, booking CRUD, confirm/cancel, bulk updates.
@@ -47,7 +47,7 @@ erDiagram
 | Viewer | Yes | N/A | No | Read |
 
 ## URL structure
-`/api/v1/<resource>/`; related resources use `/itineraries/<id>/collaborators/` and `/itineraries/<id>/days/`. Router resources provide consistent CRUD routes.
+`/api/<resource>/`; related resources use `/itineraries/<id>/collaborators/` and `/itineraries/<id>/days/`. Router resources provide consistent CRUD routes.
 
 ## Testing strategy
 - **Accounts:** registration, login, JWT-protected profile, password changes.
@@ -55,4 +55,4 @@ erDiagram
 - **Serializers:** field validation, nested/read-only/write-only behavior.
 - **Views:** CRUD status codes, permissions, filters/search, custom actions and reports.
 - **Database:** optimized relations with `select_related`, `prefetch_related`, annotations and aggregates.
-- **Regression:** run `pytest --cov=.` and require 25+ passing tests and >75% coverage for core code.
+- **Regression:** run `python manage.py test ` and require 25+ passing tests and >75% coverage for core code.

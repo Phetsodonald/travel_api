@@ -1,5 +1,3 @@
-```mermaid
-erDiagram
  USER ||--o{ ITINERARY : owns
  USER ||--o{ COLLABORATION : joins
  ITINERARY ||--o{ COLLABORATION : has
@@ -19,4 +17,3 @@ erDiagram
  USER ||--o{ RECOMMENDATION : receives
  DESTINATION ||--o{ RECOMMENDATION : ranked
  DESTINATION ||--o{ DESTINATION_PHOTO : has
-```
